@@ -24,11 +24,29 @@ AM_INIT_AUTOMAKE([-Wall])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
+AC_GNU_SOURCE
 AC_PROG_CC
 AC_HEADER_STDC
 
+AC_PREFIX_DEFAULT([/usr])
 
-AC_PREFIX_DEFAULT(/usr)
+# std headers
+AC_CHECK_HEADERS([errno.h sys/fcntl.h sys/types.h ])
+
+AC_CHECK_HEADERS([drm/drm.h])
+
+AC_CHECK_LIB([drm],[main],[],[AC_MSG_FAILURE(DRM not found!,1)])
+
+
+PKG_CHECK_MODULES(GLIB2, [
+	glib-2.0
+])
+
+
+PKG_CHECK_MODULES(ALL_NEEDED, [
+	glib-2.0
+])
+
 
 # OUTPUT files
 AC_CONFIG_FILES(

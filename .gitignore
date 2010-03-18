@@ -25,3 +25,4 @@ po/*.sin
 po/Rules-quot
 aclocal.m4
 install-sh
+build/
